@@ -82,10 +82,10 @@
 \setlength{\parindent}{0em} % Disable paragraph indentation.
 \setlength{\parskip}{1ex} % Instead enable paragraph margins.
 
-\RequirePackage{mlutext}
-\RequirePackage{mlumath}
-\RequirePackage{mlualgorithm}
-\RequirePackage{mlulisting}
+\RequirePackage{mlutext/mlutext}
+\RequirePackage{mlumath/mlumath}
+\RequirePackage{mlualgorithm/mlualgorithm}
+\RequirePackage{mlulisting/mlulisting}
 \RequirePackage[autostyle=true,german=quotes]{csquotes}
 
 % Title format:
