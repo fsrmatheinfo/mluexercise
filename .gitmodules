@@ -1,0 +1,12 @@
+[submodule "mlualgorithm"]
+	path = mlualgorithm
+	url = git@github.com:uni-halle-fsr-mathe-info/mlualgorithm.git
+[submodule "mlulisting"]
+	path = mlulisting
+	url = git@github.com:uni-halle-fsr-mathe-info/mlulisting.git
+[submodule "mlumath"]
+	path = mlumath
+	url = git@github.com:uni-halle-fsr-mathe-info/mlumath.git
+[submodule "mlutext"]
+	path = mlutext
+	url = git@github.com:uni-halle-fsr-mathe-info/mlutext.git
