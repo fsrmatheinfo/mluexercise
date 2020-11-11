@@ -5,6 +5,16 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{mluexercise}[2020/04/20 v1.0]
 
+% Class options:
+\newif\ifdataminingstyle\dataminingstylefalse
+\DeclareOption{dataminingstyle}{%
+  \dataminingstyletrue
+}
+
+% Process options and pass remaining options to parent class.
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrartcl}}
+\ProcessOptions*
+
 % Load base class (scrartcl).
 \LoadClass{scrartcl}
 
@@ -145,6 +155,20 @@
 % Math operators for "Datenstrukturen und effiziente Algorithmen" lecture:
 \DeclareMathOperator{\indeg}{indeg} % Indegree
 \DeclareMathOperator{\outdeg}{outdeg} % Outdegree
+
+% Math operators for "Einführung in Data Science" and "Data Mining" lectures:
+\renewcommand{\P}{\ifdataminingstyle p\else\mathbf{P}\fi}
+\newcommand{\E}{\ifdataminingstyle\mathbb{E}\else\mathbf{E}\fi}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Exp}{Exp}
+\DeclareMathOperator{\Dir}{Dir}
+\DeclareMathOperator{\Mult}{Mult}
+\newcommand{\Normal}{\mathcal{N}}
+\newcommand{\Norm}{\Normal}
 
 % Swap commands for better style.
 \let\tmp\mod \let\mod\bmod \let\bmod\tmp
