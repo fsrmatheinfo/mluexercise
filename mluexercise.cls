@@ -235,7 +235,7 @@ L l}
     basicstyle=\ttfamily,
     breakatwhitespace=false,
     breaklines=true,
-    prebreak={\mbox{\(\hookleftarrow\)}},
+    prebreak={\mbox{\footnotesize\(\hookleftarrow\)}},
     numbers=left,
     numberstyle=\color{lsnumber}\tiny,
     numbersep=0.5em,
@@ -251,25 +251,23 @@ L l}
 }
 
 % Haskell code style ("Konzepte der Programmierung" lecture):
-\lstdefinestyle{haskell}{
-    language=haskell,
+\lstdefinelanguage[Zimmermann]{haskell}[]{haskell}{
     escapeinside={*'}{'*},
     showstringspaces=false,
     morecomment=[l]\%,
     captionpos=b,
     emphstyle={\bfseries},
 }
+\lstalias[]{zhaskell}[Zimmermann]{haskell}
+\lstdefinestyle{haskell}{language=zhaskell} % Deprecated. Use `language=zhaskell` instead of `style=haskell`.
 
 % Prof. Molitor's assembler code style ("Einführung in Rechnerarchitektur" lecture):
-\lstdefinestyle{massembler}{
-    language=[x86masm]Assembler,
-    morekeywords={
-    ldd, sto, shl, shr, rol, ror, sub, add, shli,
-    shri, roli, rori, subi, addi, or, and, xor,
-    xnor, jmp, beq, bneq, bgt, bo, ldpc, stpc
-    },
+\lstdefinelanguage[Molitor]{Assembler}[x86masm]{Assembler}{
+    morekeywords={ldd,sto,shl,shr,rol,ror,sub,add,shli,shri,roli,rori,subi,addi,or,and,xor,xnor,jmp,beq,bneq,bgt,bo,ldpc,stpc},
     comment=[l]{\#},
 }
+\lstalias[]{massembler}[Molitor]{Assembler}
+\lstdefinestyle{massembler}{language=massembler} % Deprecated. Use `language=massembler` instead of `style=massembler`.
 
 % Title format:
 \newcommand{\Rom}[1]{\uppercase\expandafter{\romannumeral#1\relax}}
