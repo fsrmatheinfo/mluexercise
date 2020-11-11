@@ -26,7 +26,7 @@
 \RequirePackage{ifthen} % Conditional branches and loops.
 \RequirePackage{etoolbox} % Hooks for executing code.
 \RequirePackage{hyperref}
-\RequirePackage{color,xcolor}
+\RequirePackage{xcolor}
 \RequirePackage{graphicx}
 
 % Language:
