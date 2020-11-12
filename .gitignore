@@ -271,6 +271,7 @@ TSWLatexianTemp*
 
 # DocStrip output:
 mluexercise/
+mluexercise.cls
 
 # Example exercises:
 exercise-english.pdf
