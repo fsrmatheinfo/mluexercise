@@ -17,7 +17,7 @@ jobs:
             apk add make
             make install
       - name: "📤 Upload LaTeX documentation"
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v2
         with:
           path: ./mluexercise/mluexercise.pdf
           name: LaTeX class documentation
@@ -28,7 +28,7 @@ jobs:
             apk add make
             make samples
       - name: "📤 Upload LaTeX samples"
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v2
         with:
           path: ./exercise-*.pdf
           name: Exercise samples

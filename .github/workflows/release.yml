@@ -33,23 +33,23 @@ jobs:
             apk add make
             make ctan
       - name: "📤 Upload LaTeX class"
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v2
         with:
           path: ./mluexercise/mluexercise.cls
           name: LaTeX class
       - name: "📤 Upload LaTeX documentation"
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v2
         with:
           path: ./mluexercise/mluexercise.pdf
           name: LaTeX class documentation
       - name: "📤 Upload changelog"
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v2
         with:
           path: ./CHANGELOG.md
           name: Changelog
       - name: "🚀 Create GitHub release"
         id: create-github-release
-        uses: actions/create-release@v1.0.1
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
