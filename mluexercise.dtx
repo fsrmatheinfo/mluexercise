@@ -34,7 +34,7 @@ Template class for exercises/homework, maintained by the [Computer Science Stude
 ## Contact
 
 We are happy to accept pull requests and feature requests on [GitHub](https://github.com/fsrmatheinfo/mluexercise).
-Alternatively, you can contact us via email: fachschaft@mathinf.uni-halle.de
+Alternatively, you can contact us via email: [fachschaft@mathinf.uni-halle.de](mailto:fachschaft@mathinf.uni-halle.de)
 
 ## License
 
@@ -84,7 +84,7 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 \renewcommand{\texttt}[1]{{\ttsmallfont #1}}
 \usepackage{listings}
 \usepackage{csquotes}
-\usepackage{sectsty}\allsectionsfont{\sffamily}
+\usepackage[sf]{titlesec}
 \lstset{
     language=TeX,
     basicstyle=\ttfamily,
@@ -435,9 +435,12 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\newcommand{\eqtransform}{\ensuremath{\qquad\big|\,\,}} % Equivalence transformation
-\newcommand{\ditto}{\textquotedbl} \newcommand{\dito}{\ditto} % "Ditto" sign
-\renewcommand{\qed}{\nopagebreak\hfill\ensuremath{\square}} % End of proof: "quod erat demonstrandum"
+% Equivalence transformation
+\newcommand{\eqtransform}{\ensuremath{\qquad\big|\,\,}}
+% "Ditto" sign
+\newcommand{\ditto}{\textquotedbl} \newcommand{\dito}{\ditto}
+% End of proof: "quod erat demonstrandum"
+\renewcommand{\qed}{\nopagebreak\hfill\ensuremath{\square}}
 %    \end{macrocode}
 %
 %    \begin{macrocode}
@@ -554,7 +557,8 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 \RequirePackage[vlined,linesnumbered]{algorithm2e}
 \DontPrintSemicolon % Hide semicolons.
 \SetKwProg{Function}{function}{\ is}{end function} % Function definition.
-\SetKwComment{Comment}{\quad$\triangleright$\ }{}\SetCommentSty{itshape} % Comment style.
+\SetKwComment{Comment}{\quad$\triangleright$\ }{} % Comment style.
+\SetCommentSty{itshape} % Comment font.
 \SetKw{Continue}{continue}
 \SetKwBlock{Repeat}{repeat}{}
 \SetNlSty{tiny}{}{} % Line number font.
@@ -672,7 +676,8 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 %
 %    \begin{macrocode}
     \setcounter{section}{\the\@task} \addtocounter{section}{-1}
-    \newcommand{\@exercisestring}{\IfGerman{\the\@exercise.~Übungsserie}{Exercise~\the\@exercise}}
+    \newcommand{\@exercisestring}{\IfGerman{%
+        \the\@exercise.~Übungsserie}{Exercise~\the\@exercise}}
 %    \end{macrocode}
 %
 %Set up page head/foot with metadata.
@@ -682,7 +687,8 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
     \chead{\textbf{\@exercisestring}}
     \ohead{
         \the\@studentnumber%
-        \ifthenelse{\equal{\the\@studentnumber}{} \OR \equal{\the\@studentsymbol}{}}{}{\ /\,}%
+        \ifthenelse{\equal{\the\@studentnumber}{} \OR
+            \equal{\the\@studentsymbol}{}}{}{\ /\,}%
         \the\@studentsymbol%
     }
 %    \end{macrocode}
