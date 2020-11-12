@@ -1,0 +1,95 @@
+name: Create release
+
+on:
+  push:
+    tags: # Push events to new versions, e.g., 1.0, 20.15.10
+      - "[0-9]+.[0-9]+"
+      - "[0-9]+.[0-9]+.[0-9]+"
+      - "[0-9]+.[0-9]+-*"
+      - "[0-9]+.[0-9]+.[0-9]+-*"
+
+jobs:
+  build:
+    name: "🚀 Release"
+    runs-on: ubuntu-18.04
+    steps:
+      - name: "📥 Check-out"
+        uses: actions/checkout@v2
+      - name: "🏷️ Get version tag"
+        id: get-version
+        run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
+      - name: "✏️ Generate changelog"
+        id: generate-changelog
+        if: runner.os == 'Linux'
+        uses: heinrichreimer/action-github-changelog-generator@v2.1
+        with:
+          onlyLastTag: "true"
+          stripHeaders: "true"
+          stripGeneratorNotice: "true"
+      - name: "🏗️ Build LaTeX class"
+        uses: xu-cheng/texlive-action/small@v1
+        with:
+          run: |
+            apk add make
+            make ctan
+      - name: "📤 Upload LaTeX class"
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          path: ./mluexercise/mluexercise.cls
+          name: mluexercise.cls
+      - name: "📤 Upload LaTeX documentation"
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          path: ./mluexercise/mluexercise.pdf
+          name: mluexercise.pdf
+      - name: "📤 Upload changelog"
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          path: ./CHANGELOG.md
+          name: CHANGELOG.md
+      - name: "🚀 Create GitHub release"
+        id: create-github-release
+        uses: actions/create-release@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ steps.get-version.outputs.tag }}
+          body: ${{ steps.generate-changelog.outputs.changelog }}
+          prerelease: false
+      - name: "📤 Upload LaTeX class"
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-github-release.outputs.upload_url }}
+          asset_path: ./mluexercise/mluexercise.cls
+          asset_name: mluexercise.cls
+          asset_content_type: application/x-tex
+      - name: "📤 Upload LaTeX documentation"
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-github-release.outputs.upload_url }}
+          asset_path: ./mluexercise/mluexercise.pdf
+          asset_name: mluexercise.pdf
+          asset_content_type: application/pdf
+      - name: "📤 Upload LaTeX CTAN archive"
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-github-release.outputs.upload_url }}
+          asset_path: ./mluexercise.zip
+          asset_name: mluexercise.zip
+          asset_content_type: application/zip
+      - name: "📤 Upload changelog"
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-github-release.outputs.upload_url }}
+          asset_path: ./CHANGELOG.md
+          asset_name: CHANGELOG.md
+          asset_content_type: application/zip

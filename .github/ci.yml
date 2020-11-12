@@ -1,0 +1,46 @@
+name: "CI"
+
+on: push
+
+jobs:
+  build:
+    name: "🏗️ LaTeX build"
+    runs-on: ubuntu-18.04
+    steps:
+      - name: "📥 Check-out"
+        uses: actions/checkout@v2
+      - name: "🏗️ Build LaTeX class"
+        uses: xu-cheng/texlive-action/small@v1
+        with:
+          run: |
+            apk add make
+            make install
+      - name: "🏗️ Build LaTeX samples"
+        uses: xu-cheng/texlive-action/small@v1
+        with:
+          run: |
+            apk add make
+            make samples
+      - name: "🧰 Set up JDK 1.8"
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: "💪 Grant execute permission for gradlew"
+        run: "chmod +x gradlew"
+      - name: "🏗️ Build with Gradle"
+        run: "./gradlew build"
+  test:
+    needs: build
+    name: "✅ Gradle test"
+    runs-on: ubuntu-18.04
+    steps:
+      - name: "📥 Check-out"
+        uses: actions/checkout@v2
+      - name: "🧰 Set up JDK 1.8"
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: "💪 Grant execute permission for gradlew"
+        run: "chmod +x gradlew"
+      - name: "✅ Test with Gradle"
+        run: "./gradlew test"
