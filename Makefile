@@ -2,7 +2,7 @@ CLASS = mluexercise
 
 dependencies:
 	tlmgr update --all
-	tlmgr install latex euenc geometry babel libertine eulervm sourcecodepro hyperref relsize listings csquotes titlesec
+	tlmgr install latex ly1 geometry babel libertine eulervm sourcecodepro hyperref relsize listings csquotes titlesec
 
 install:
 	latexmk -outdir=$(CLASS) $(CLASS).dtx -pdf
