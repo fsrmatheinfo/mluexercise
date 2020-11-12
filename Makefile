@@ -12,7 +12,7 @@ install: dependencies-install
 	cp $(CLASS)/$(CLASS).cls .
 
 dependencies-samples: texlive-update
-	tlmgr install koma-script latex ly1 etoolbox xpatch hyperref xcolor babel oberdiek tools geometry libertine eulervm sourcecodepro microtype csquotes relsize totpages amsmath amscls amsfonts tools cancel pgf algorithm2e listings listingsutf8 graphics float caption pgfplots
+	tlmgr install koma-script latex ly1 etoolbox xpatch ifoddpage hyperref xcolor babel oberdiek tools geometry libertine eulervm sourcecodepro microtype csquotes relsize totpages amsmath amscls amsfonts tools cancel pgf algorithm2e listings listingsutf8 graphics float caption pgfplots
 
 samples: dependencies-samples
 	latexmk exercise-english.tex -pdf
