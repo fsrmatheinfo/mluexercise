@@ -36,17 +36,17 @@ jobs:
         uses: actions/upload-artifact@v1.0.0
         with:
           path: ./mluexercise/mluexercise.cls
-          name: mluexercise.cls
+          name: LaTeX class
       - name: "📤 Upload LaTeX documentation"
         uses: actions/upload-artifact@v1.0.0
         with:
           path: ./mluexercise/mluexercise.pdf
-          name: mluexercise.pdf
+          name: LaTeX class documentation
       - name: "📤 Upload changelog"
         uses: actions/upload-artifact@v1.0.0
         with:
           path: ./CHANGELOG.md
-          name: CHANGELOG.md
+          name: Changelog
       - name: "🚀 Create GitHub release"
         id: create-github-release
         uses: actions/create-release@v1.0.1
