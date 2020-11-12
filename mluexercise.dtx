@@ -1,8 +1,5 @@
 %\iffalse
 %!TEX program  = pdfLaTeX
-%!Class = mluexercise
-%!Author = Fachschaftsrat Mathematik/Informatik der Studierendenschaft der Martin-Luther-Universität Halle-Wittenberg K.d.ö.R.
-%!Date = 2020/11/12
 %<*internal>
 \iffalse
 %</internal>
@@ -87,6 +84,7 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 \renewcommand{\texttt}[1]{{\ttsmallfont #1}}
 \usepackage{listings}
 \usepackage{csquotes}
+\usepackage{sectsty}\allsectionsfont{\sffamily}
 \lstset{
     language=TeX,
     basicstyle=\ttfamily,
@@ -110,19 +108,19 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 %</driver>
 %<*class>
 %\fi
-%\GetFileInfo{\jobname.cls}
 %
+%\renewcommand{\filedate}{2020/11/12}
+%\renewcommand{\fileversion}{v2.0}
 %
-%
-%\title{The \texttt{\jobname} class\footnote{This document describes version \fileversion{}, last revised \filedate{}.}}
-%\author{%
+%\title{\sffamily The \texttt{\jobname} class\footnote{This document describes version \fileversion{}, last revised \filedate{}.}}
+%\author{\sffamily %
 %    Jan Heinrich Reimer \\
 %    Fachschaftsrat Mathematik/Informatik%
 %    \footnote{Fachschaftsrat Mathematik/Informatik der Studierendenschaft der Martin-Luther-Universität Halle-Wittenberg K.d.ö.R., Von-Seckendorff-Platz~1, 06120~Halle~ (Saale), Germany} \\
 %    \url{https://fachschaft.mathinf.uni-halle.de} \\
 %    \texttt{fachschaft@mathinf.uni-halle.de}
 %}
-%\date{Released \filedate}
+%\date{\sffamily Released \filedate{}}
 %
 %\maketitle
 %\tableofcontents
@@ -133,12 +131,18 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 %The class can be used by all students---especially first semesters---to typeset their exercises with a low-effort in beautiful \LaTeX{}.
 % We include a bunch of handy macros that are used throughout many lectures during the bachelor's degree program.
 %
-%\changes{v1.0}{2020/11/12}{First public release}
-%\changes{v1.1}{2020/11/22}{First public release}
+%\changes{v1.0}{2018/10/03}{Initial draft}
+%\changes{v2.0}{2020/11/12}{First public release}
 %
 %\section{Usage}
 %
 %TODO
+%
+%\subsection{Exercise Metadata}
+%
+%\subsection{Student Metadata}
+%
+%\paragraph{Multiple Students}
 %
 %\subsection{Included Packages}
 %
@@ -192,7 +196,7 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 %
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{mluexercise}[2020/04/20 v1.0]
+\ProvidesPackage{mluexercise}[2020/11/12 v2.0]
 %    \end{macrocode}
 %
 %\paragraph{Class Options}
