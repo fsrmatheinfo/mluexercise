@@ -31,6 +31,7 @@ jobs:
         with:
           run: |
             apk add make
+            make dependencies
             make ctan
       - name: "📤 Upload LaTeX class"
         uses: actions/upload-artifact@v1.0.0
