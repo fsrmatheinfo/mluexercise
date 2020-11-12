@@ -46,7 +46,17 @@ The `mluexercise` class loads a number of useful LaTeX packages which are needed
 - [`subcaption`](https://ctan.org/pkg/subcaption) for sub-figures
 - [`csquotes`](https://ctan.org/pkg/csquotes) for quotation (not citation)
 
-## Goals
+## Development
+
+The `mluexercise` class is written and documented in [`mluexercise.dtx`](mluexercise.dtx), which can then be used to generate `.ins` and `.sty` files as well as the class' documentation PDF:
+
+```shell script
+latexmk -outdir=mluexercise mluexercise.dtx
+```
+
+In the `.dtx` file, class code is written between the `%<*class>` and `%</class>` tags, whereas the package documentation can be mixed in by prefixing the line with a single `%`.
+
+### Goals
 
 - Usability for first semester students with rather little LaTeX experience
 - Consistency with [Martin Luther University's](https://uni-halle.de/) [brand guidelines](https://www.pr.uni-halle.de/download/logo/)

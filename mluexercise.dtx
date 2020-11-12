@@ -1,0 +1,709 @@
+%\iffalse
+%!TEX program  = pdfLaTeX
+%!Class = mluexercise
+%!Author = Fachschaftsrat Mathematik/Informatik der Studierendenschaft der Martin-Luther-Universität Halle-Wittenberg K.d.ö.R.
+%!Date = 2020/11/12
+%<*internal>
+\iffalse
+%</internal>
+%<*license>
+MIT License
+
+Copyright (c) 2020 Fachschaftsrat Mathematik/Informatik der Studierendenschaft der Martin-Luther-Universität Halle-Wittenberg K.d.ö.R.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+%</license>
+%<*readme>
+# The `mluexercise` class
+
+Template class for exercises/homework, maintained by the [Computer Science Student's Council](https://fachschaft.mathinf.uni-halle.de) at [Martin Luther University Halle-Wittenberg](https://uni-halle.de).
+
+## Contact
+
+We are happy to accept pull requests and feature requests on [GitHub](https://github.com/fsrmatheinfo/mluexercise).
+Alternatively, you can contact us via email: fachschaft@mathinf.uni-halle.de
+
+## License
+
+The `mluexercise` LaTeX class is distributed under the [MIT license](https://ctan.org/license/mit).
+%</readme>
+%<*internal>
+\fi
+\def\nameofplainTeX{plain}\ifx\fmtname\nameofplainTeX\else\expandafter\begingroup\fi
+%</internal>
+%<*install>
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+\usedir{tex/latex/\jobname}
+\generate{
+    \file{\jobname.cls}{\from{\jobname.dtx}{class}}
+}
+%\endbatchfile
+%</install>
+%<*internal>
+\usedir{source/latex/\jobname}
+\generate{
+    \file{\jobname.ins}{\from{\jobname.dtx}{install}}
+}
+\nopreamble\nopostamble
+\usedir{doc/latex/\jobname}
+\generate{
+    \file{README.md}{\from{\jobname.dtx}{readme}}
+    \file{LICENSE.txt}{\from{\jobname.dtx}{license}}
+}
+\ifx\fmtname\nameofplainTeX\expandafter\endbatchfile\else\expandafter\endgroup\fi
+%</internal>
+%<*driver>
+\documentclass[a4paper,english]{ltxdoc}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{babel}
+\usepackage{libertine}
+\usepackage{eulervm}
+\usepackage[ttdefault]{sourcecodepro}
+^^A %%\usepackage[numbered]{hypdoc}
+\usepackage[colorlinks=false]{hyperref}
+\usepackage{relsize}
+\newcommand{\ttsmallfont}{\ttfamily\smaller}
+\renewcommand{\UrlFont}{\ttsmallfont}
+\renewcommand{\texttt}[1]{{\ttsmallfont #1}}
+\usepackage{listings}
+\usepackage{csquotes}
+\lstset{
+    language=TeX,
+    basicstyle=\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    prebreak={\mbox{$\hookleftarrow$}},
+    numbers=left,
+    numberstyle=\scriptsize,
+    numbersep=1pt,
+    keepspaces=true,
+    tabsize=4,
+    xleftmargin=1em,
+}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+^^A \OnlyDescription
+\begin{document}
+    \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+%<*class>
+%\fi
+%\GetFileInfo{\jobname.cls}
+%
+%
+%
+%\title{The \texttt{\jobname} class\footnote{This document describes version \fileversion{}, last revised \filedate{}.}}
+%\author{%
+%    Jan Heinrich Reimer \\
+%    Fachschaftsrat Mathematik/Informatik%
+%    \footnote{Fachschaftsrat Mathematik/Informatik der Studierendenschaft der Martin-Luther-Universität Halle-Wittenberg K.d.ö.R., Von-Seckendorff-Platz~1, 06120~Halle~ (Saale), Germany} \\
+%    \url{https://fachschaft.mathinf.uni-halle.de} \\
+%    \texttt{fachschaft@mathinf.uni-halle.de}
+%}
+%\date{Released \filedate}
+%
+%\maketitle
+%\tableofcontents
+%
+%\section{Introduction}
+%
+%The \texttt{mluexercise} class is a template class for solving weekly exercises at the Institute for Computer Science of Martin Luther University Halle-Wittenberg.\footnote{\url{https://uni-halle.de/}}
+%The class can be used by all students---especially first semesters---to typeset their exercises with a low-effort in beautiful \LaTeX{}.
+% We include a bunch of handy macros that are used throughout many lectures during the bachelor's degree program.
+%
+%\changes{v1.0}{2020/11/12}{First public release}
+%\changes{v1.1}{2020/11/22}{First public release}
+%
+%\section{Usage}
+%
+%TODO
+%
+%\subsection{Included Packages}
+%
+%The \texttt{\jobname} class loads a number of useful \LaTeX{} packages listed in Table~\ref{tab:packages}.
+%Those are needed to typeset exercises during the Computer Science bachelor's degree programme at Martin Luther University Halle-Wittenberg.
+%For further documentation please refer to each respective package.
+%\begin{table}
+%    \caption{Packages included in the class.}
+%    \label{tab:packages}
+%    \begin{tabular}{lll}
+%        \hline
+%        \textbf{Package} & \textbf{Purpose} & \textbf{Link} \\
+%        \hline
+%        \texttt{babel} & hyphenation, localization & \url{https://ctan.org/pkg/babel} \\
+%        \texttt{amsmath} & mathematics & \url{https://ctan.org/pkg/amsmath} \\
+%        \texttt{amsthm} & & \url{https://ctan.org/pkg/amsthm} \\
+%        \texttt{amssymb} & & \url{https://ctan.org/pkg/amssymb} \\
+%        \texttt{amstext} & & \url{https://ctan.org/pkg/amstext} \\
+%        \texttt{array} & & \url{https://ctan.org/pkg/array} \\
+%        \texttt{cancel} & & \url{https://ctan.org/pkg/cancel} \\
+%        \texttt{inputenc} & UTF8 encoding & \url{https://ctan.org/pkg/inputenc} \\
+%        \texttt{fontenc} & T1 encoding & \url{https://ctan.org/pkg/fontenc} \\
+%        \texttt{graphicx} & images, graphics & \url{https://ctan.org/pkg/graphicx} \\
+%        \texttt{xcolor} & color definitions & \url{https://ctan.org/pkg/xcolor} \\
+%        \texttt{tikz} & drawing vector graphics & \url{https://ctan.org/pkg/tikz} \\
+%        \texttt{pgfplots} & plotting & \url{https://ctan.org/pkg/pgfplots} \\
+%        \texttt{algorithm2e} & pseudocode, algorithms & \url{https://ctan.org/pkg/algorithm2e} \\
+%        \texttt{listings} & code listings & \url{https://ctan.org/pkg/listings} \\
+%        \texttt{listingsutf8} & & \url{https://ctan.org/pkg/listingsutf8} \\
+%        \texttt{subcaption} & sub-figures & \url{https://ctan.org/pkg/subcaption} \\
+%        \texttt{csquotes} & quotation & \url{https://ctan.org/pkg/csquotes} \\
+%        \hline
+%    \end{tabular}
+%\end{table}
+%
+%\section{Design Goals}
+%
+%The \texttt{\jobname} class should:
+%
+%\begin{enumerate}
+%    \item be usable for first semester students with rather little LaTeX experience,
+%    \item be consistent with Martin Luther University brand guidelines\footnote{\url{https://www.pr.uni-halle.de/download/logo/}}, especially with respect to font families and colors,
+%    \item include packages frequently needed by students.
+%\end{enumerate}
+%
+%\section{Implementation}
+%
+%\subsection{Basic setup}
+%
+%We specify the \LaTeX{} version, define and parse options and then load the base class \texttt{scrartcl}\footnote{\url{https://ctan.org/pkg/scrartcl}} with all remaining options.
+%
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mluexercise}[2020/04/20 v1.0]
+%    \end{macrocode}
+%
+%\paragraph{Class Options}
+%
+%    \begin{macrocode}
+\newif\ifdataminingstyle\dataminingstylefalse
+\DeclareOption{dataminingstyle}{%
+  \dataminingstyletrue
+}
+%    \end{macrocode}
+%
+%Process options and load base class with remaining options.
+%
+%    \begin{macrocode}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrartcl}}
+\ProcessOptions*
+\LoadClass{scrartcl}
+%    \end{macrocode}
+%
+%To enable support for UTF8 and some other useful basics, we load a bunch of packages.
+%
+%    \begin{macrocode}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{ifthen} % Conditional branches and loops.
+\RequirePackage{etoolbox} % Hooks for executing code.
+\RequirePackage{hyperref} % Hyperlinks.
+\RequirePackage{xcolor} % Color definitions.
+%    \end{macrocode}
+%
+%As we'd like to be able to switch between English and German with proper hyphenation, load language support packages.%
+%\footnote{If you'd like to add a language, please contact us.}
+%
+%    \begin{macrocode}
+\RequirePackage{babel}
+\RequirePackage{iflang}
+\newcommand{\IfGerman}[2]{\IfLanguagePatterns{german}{#1}{%
+    \IfLanguagePatterns{ngerman}{#1}{#2}}}
+%    \end{macrocode}
+%
+%\subsection{Global Variables}
+%
+%The class can be configured with the lecture's and student's details. We define global variables for that and redefine some built in \LaTeX{} commands to ease the migration from standard classes.
+%
+%    \begin{macrocode}
+\newcommand{\@checkoption}[3]{%
+    \AtEndPreamble{%
+        \ifthenelse{\equal{\the#1}{}}{%
+            \ClassError{mluexercise}{Missing #2}{%
+                Set #2 using the \protect#3 command.%
+            }%
+        }{}%
+    }%
+}
+\newtoks\@lecture
+\newcommand{\lecture}[1]{\global\@lecture{#1}}
+\let\title\lecture % Redefine standard \title command.
+\@checkoption{\@lecture}{lecture name}{\lecture}
+\newtoks\@semester
+\newcommand{\semester}[1]{\global\@semester{#1}}
+\global\@semester{ % Automatically set semester based on current date.
+    \ifnum\month<4 % Winter semester, including previous year.
+    WS~{\advance\year by -1 \the\year\advance\year by 1}/\the\year%
+    \else\ifnum\month<10 % Summer semester.
+    SS~\the\year%
+    \else % Winter semester, including next year.
+    WS~\the\year/{\advance\year by 1 \the\year\advance\year by -1}%
+    \fi\fi%
+}
+\newtoks\@exercise
+\newcommand{\exercise}[1]{\global\@exercise{#1}}
+\@checkoption{\@exercise}{exercise number}{\exercise}
+\newtoks\@task
+\newcommand{\task}[1]{\global\@task{#1}}
+\global\@task{1}
+\newtoks\@group
+\newcommand{\group}[1]{\global\@group{#1}}
+\global\@group{0}
+\newtoks\@studentname
+\newcommand{\studentname}[1]{\global\@studentname{#1}}
+\let\author\studentname % Redefine standard \title command.
+\@checkoption{\@studentname}{student name}{\studentname}
+\newtoks\@studentnumber
+\newcommand{\studentnumber}[1]{\global\@studentnumber{#1}}
+\newtoks\@studentsymbol
+\newcommand{\studentsymbol}[1]{\global\@studentsymbol{#1}}
+%    \end{macrocode}
+%
+%\subsection{Layout, Text}
+%
+%Set up a reasonable page layout and define text styles that comply with Martin Luther University brand guidelines.
+%
+%    \begin{macrocode}
+\RequirePackage{calc}
+\RequirePackage[
+    a4paper,
+    inner=2cm,
+    outer=2cm,
+    top=3cm,
+    bottom=3cm,
+    head=0.75cm,
+    headsep=0.25cm,
+    foot=0.75cm,
+]{geometry}
+\renewcommand{\baselinestretch}{1.15}
+\setlength{\parindent}{0em} % Disable paragraph indentation.
+\setlength{\parskip}{1ex} % Instead enable paragraph margins.
+%    \end{macrocode}
+%
+%\paragraph{Font Families}
+%
+%We use Libertine as main font as that is the closest free font to the proprietary URW~Classico font used by the university. For mathematics we use the more modern Euler~Maths font and for source code the \emph{true} monospace font Source~Code~Pro, as otherwise copying from the PDF is broken. For clarity reasons we do not want code ligatures.
+%
+%    \begin{macrocode}
+\RequirePackage{libertine}
+\RequirePackage{eulervm}
+\RequirePackage[ttdefault]{sourcecodepro}
+\RequirePackage{microtype}
+\DisableLigatures{family=tt*}
+%    \end{macrocode}
+%
+%\paragraph{Text Styles}
+%
+%    \begin{macrocode}
+\newcommand{\strong}[1]{\textbf{#1}}
+\newcommand{\italic}[1]{\textit{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\Underline}[1]{\underline{\underline{#1}}} % Double underline.
+% Abbreviated plural ("Lineare Algebra" lecture).
+\newcommand{\plural}[1]{\textsuperscript{\underline{$#1$}}}
+\newcommand{\pl}[1]{\plural{#1}}
+\RequirePackage[autostyle=true,german=quotes]{csquotes}
+%    \end{macrocode}
+%
+%\paragraph{URL / Link Font}
+%
+%    \begin{macrocode}
+\RequirePackage{relsize}
+\newcommand{\ttsmallfont}{\ttfamily\smaller}
+\renewcommand{\UrlFont}{\ttsmallfont}
+\newcommand{\textttsmall}[1]{{\ttsmallfont #1}}
+\newcommand{\query}[1]{{\ttsmallfont #1}}
+\newcommand{\domain}[1]{\href{http://#1}{\mbox{\ttsmallfont #1}}}
+\newcommand{\email}[1]{\href{mailto:#1}{\mbox{\ttsmallfont #1}}}
+%    \end{macrocode}
+%
+%\paragraph{Headings}
+%
+%    \begin{macrocode}
+\setkomafont{sectioning}{\sffamily\mdseries}
+\setkomafont{section}{\LARGE}
+\setkomafont{subsection}{\Large}
+\setkomafont{subsubsection}{\large}
+\setkomafont{paragraph}{\large}
+\setkomafont{subparagraph}{\normalsize}
+\renewcommand{\thesection}{%
+    \bfseries\upshape \IfGerman{Aufgabe}{Task} \arabic{section}}
+\renewcommand{\thesubsection}{%
+    \bfseries\upshape \alph{subsection})}
+\renewcommand{\thesubsubsection}{%
+    \upshape (\roman{subsubsection})}
+\renewcommand{\autodot}{}
+%    \end{macrocode}
+%
+%\paragraph{Title}
+%
+%    \begin{macrocode}
+\newcommand{\Rom}[1]{\uppercase\expandafter{\romannumeral#1\relax}}
+\newcommand{\groupstring}{\ifnum\the\@group>0{, 
+    \IfGerman{Gruppe}{Group} \Rom{\the\@group}}\fi}
+\author{}
+\setkomafont{title}{\sffamily\bfseries\huge\centering}
+\setkomafont{date}{\sffamily\large\centering}
+\newlength{\approxtitlewidth}
+\renewcommand{\maketitle}{%
+    \settowidth{\approxtitlewidth}{\usefontofkomafont{title}\the\@lecture}%
+    \ifthenelse{\lengthtest{\approxtitlewidth>\textwidth}}{%
+        \addtokomafont{title}{\LARGE}}{}%
+    \begin{center}%
+        \usefontofkomafont{title}\the\@lecture \\
+        \usefontofkomafont{date}\@date, \the\@semester\groupstring
+    \end{center}
+}
+%    \end{macrocode}
+%
+%\paragraph{Head, Foot}
+%
+%    \begin{macrocode}
+\RequirePackage[headsepline,footsepline]{scrlayer-scrpage}
+\RequirePackage{totpages}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\setkomafont{pageheadfoot}{\sffamily}
+\setkomafont{pagenumber}{\sffamily}
+\ofoot{\thepage~von~\ref{TotPages}}
+%    \end{macrocode}
+%
+%\subsection{Mathematics}
+%
+%We rely on AMS packages for rendering mathematical equations, proofs, and symbols.
+%Additionally we load packages for arrays in math mode and cancellations
+%
+%    \begin{macrocode}
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+\RequirePackage{amssymb}
+\RequirePackage{amstext}
+\RequirePackage{array}
+\RequirePackage{cancel}
+%    \end{macrocode}
+%
+%Now we define (more readable) macros for the mathematical symbols and functions most commonly used at Martin Luther University.
+%
+%    \begin{macrocode}
+\newcommand{\union}{\cup}
+\newcommand{\disjunction}{\uplus}
+\newcommand{\intersection}{\cap}
+\newcommand{\intersect}{\cap}
+\newcommand{\infinity}{\infty}
+\newcommand{\corresponds}{\triangleq}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\newcommand{\C}{\mathbb{C}} % Complex numbers.
+\newcommand{\complexnumbers}{\C}
+\newcommand{\R}{\mathbb{R}} % Real numbers.
+\newcommand{\realnumbers}{\R}
+\newcommand{\Q}{\mathbb{Q}} % Rational numbers.
+\newcommand{\rationalnumbers}{\Q}
+\newcommand{\Z}{\mathbb{Z}} % Whole numbers.
+\newcommand{\wholenumbers}{\Z}
+\newcommand{\N}{\mathbb{N}} % Natural numbers.
+\newcommand{\naturalnumbers}{\N}
+\newcommand{\B}{\mathbb{B}} % Binary numbers.
+\newcommand{\binarynumbers}{\B}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\newcommand{\eqtransform}{\ensuremath{\qquad\big|\,\,}} % Equivalence transformation
+\newcommand{\ditto}{\textquotedbl} \newcommand{\dito}{\ditto} % "Ditto" sign
+\renewcommand{\qed}{\nopagebreak\hfill\ensuremath{\square}} % End of proof: "quod erat demonstrandum"
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\newcommand{\mland}{\(\land\)} % \land in text.
+\newcommand{\mlor}{\(\lor\)} % \lor in text.
+%    \end{macrocode}
+%
+%Many maths symbols can have alternatives for stylistic choices. We enable the variants most liked by our professors.
+%
+%    \begin{macrocode}
+\let\tmp\mod \let\mod\bmod \let\bmod\tmp
+\let\varemptyset\emptyset \let\emptyset\varnothing
+\let\tmp\epsilon \let\epsilon\varepsilon \let\varepsilon\tmp
+\let\tmp\phi \let\phi\varphi \let\varphi\tmp
+%    \end{macrocode}
+%
+%For some specific lectures we provide more detailed macros for symbols and functions.
+%
+%\paragraph{Lecture \textquote{Lineare Algebra}}
+%
+%    \begin{macrocode}
+\newcommand{\base}[1]{\mathcal{#1}} % Base (caligraphic)
+\DeclareMathOperator{\im}{im} % Image
+\DeclareMathOperator{\id}{id} % Identity
+\DeclareMathOperator{\sel}{sel} % Selection
+\DeclareMathOperator{\dom}{dom} % Domain
+\DeclareMathOperator{\ran}{ran} % Range
+\DeclareMathOperator{\Hom}{Hom} % Homomorphism
+\DeclareMathOperator{\End}{End} % Endomorphism
+%    \end{macrocode}
+%
+%\paragraph{Lecture \textquote{Datenstrukturen und effiziente Algorithmen}}
+%
+%    \begin{macrocode}
+\renewcommand{\O}{\mathcal{O}} % asymptotic O-Notation (Landau)
+\DeclareMathOperator{\indeg}{indeg} % Indegree
+\DeclareMathOperator{\outdeg}{outdeg} % Outdegree
+%    \end{macrocode}
+%
+%\paragraph{Lecture \textquote{Einführung in Data Science}}
+%
+%    \begin{macrocode}
+\renewcommand{\P}{\ifdataminingstyle p\else\mathbf{P}\fi}
+\newcommand{\E}{\ifdataminingstyle\mathbb{E}\else\mathbf{E}\fi}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Exp}{Exp}
+\DeclareMathOperator{\Dir}{Dir}
+\DeclareMathOperator{\Mult}{Mult}
+\newcommand{\Normal}{\mathcal{N}}
+\newcommand{\Norm}{\Normal}
+%    \end{macrocode}
+%
+%\paragraph{Table Columns}
+%
+%The handy \texttt{tabular} column definitions below can be used to typeset a whole column in math mode, to avoid repetetive opening/closing brackets.
+%
+%    \begin{macrocode}
+\newcolumntype{L}{>{\(}l<{\)}}
+\newcolumntype{R}{>{\(}r<{\)}}
+\newcolumntype{C}{>{\(}c<{\)}}
+%    \end{macrocode}
+%
+%\paragraph{Calculus Environments}
+%
+%Calculus environments are currently work in progress, subject to change, and may not work as expected.
+%However, they can simplify writing logical consequences in the \textquote{Mathematische Grundlagen der Informatik und Konzepte der Modellierung} lecture.
+%
+%    \begin{macrocode}
+\newcounter{calculusRowCount}
+\RequirePackage{pgfkeys}
+\newenvironment{calculus}[1]{
+\pgfkeys{/mlu/calculus/.cd,show index=false,
+    context=\Gamma,context command=context,#1}
+\setcounter{calculusRowCount}{0}
+\newcommand{\calculusSymbol}{\text{
+        \sffamily\itshape\pgfkeysvalueof{/mlu/calculus/symbol}}}
+\newcommand{\calculusContext}{\ensuremath{
+        \pgfkeysvalueof{/mlu/calculus/context}}}
+\expandafter\let\csname \pgfkeysvalueof{/mlu/calculus/context command}%
+    \endcsname\calculusContext
+\par\vspace{0.5em}
+\begin{minipage}{\textwidth}\begin{tabular}{
+    @{\stepcounter{calculusRowCount}
+    (\arabic{calculusRowCount})\hspace{1em}} R
+    @{\hspace{0.4em}
+    $\vdash_{\ifthenelse{
+        \equal{\pgfkeysvalueof{/mlu/calculus/show index}}{true}}{
+            \ifthenelse{\equal{\pgfkeysvalueof{/mlu/calculus/symbol}}{}}{}{
+                \calculusSymbol}}{\hspace{-0.1em}}}$\hspace{0.6em}}
+        L l
+    }
+}{
+\end{tabular}\end{minipage}\vspace{0.5em}
+\let\calculusContext\undefined \let\calculusSymbol\undefined
+\expandafter\let\csname \pgfkeysvalueof{/mlu/calculus/context command}%
+    \endcsname\undefined
+}
+\newenvironment{eqcalc}[1][]{\begin{calculus}[
+    symbol=E,show index=true,context={\calculusSymbol_{#1}},
+    context command=E]}{\end{calculus}} % Equation calculus
+\newenvironment{seqcalc}{\begin{calculus}[
+    symbol=S,show index=true, context={\calculusSymbol},
+    context command=seq]}{\end{calculus}} % Sequence calculus
+%    \end{macrocode}
+%
+%\subsection{Algorithms, Pseudocode}
+%\label{sec:implementation-pseudocode}
+%
+%    \begin{macrocode}
+\RequirePackage[vlined,linesnumbered]{algorithm2e}
+\DontPrintSemicolon % Hide semicolons.
+\SetKwProg{Function}{function}{\ is}{end function} % Function definition.
+\SetKwComment{Comment}{\quad$\triangleright$\ }{}\SetCommentSty{itshape} % Comment style.
+\SetKw{Continue}{continue}
+\SetKwBlock{Repeat}{repeat}{}
+\SetNlSty{tiny}{}{} % Line number font.
+\SetNlSkip{0.5em} % Line number skip.
+\SetAlgoNlRelativeSize{0}
+\SetAlFnt{\footnotesize}
+%    \end{macrocode}
+%
+%\subsection{Code Listings}
+%
+%For syntax highlighting and including source code listings, we use the \texttt{listings} package.
+%With \texttt{listingsutf8} we can include listings that contain Unicode characters.
+%
+%    \begin{macrocode}
+\RequirePackage{listings}
+\RequirePackage{listingsutf8} % UTF8 support in included listings.
+%    \end{macrocode}
+%
+%Define colors for syntax highlighting.
+%
+%    \begin{macrocode}
+\definecolor{lsnumber}{rgb}{0,0,0} % Zeilennummerfarbe
+\definecolor{lscomment}{rgb}{0.25,0.5,0.35} % Kommentarfarbe
+\definecolor{lskeyword}{rgb}{0.5,0,0.35} % Schlüsselwörterfarbe
+\definecolor{lsstring}{rgb}{0.6,0,0} % Zeichenkettenfarbe
+%    \end{macrocode}
+%
+%The default listing style below is enabled automatically and should guarantee consistency with the appearance of pseudocode (see Section~\ref{sec:implementation-pseudocode}).
+%
+%    \begin{macrocode}
+\lstset{
+    language=C,
+    basicstyle=\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    prebreak={\mbox{\footnotesize\(\hookleftarrow\)}},
+    numbers=left,
+    numberstyle=\color{lsnumber}\tiny,
+    numbersep=0.5em,
+    stepnumber=1,
+    commentstyle=\color{lscomment},
+    morecomment=[s][\color{lscomment}]{/**}{*/},
+    keepspaces=true,
+    keywordstyle=\bfseries\color{lskeyword},
+    stringstyle=\color{lsstring},
+    showtabs=false, showspaces=false,
+    showstringspaces=false,
+    tabsize=2,
+}
+%    \end{macrocode}
+%
+%\paragraph{Haskell Language Definition}
+%
+%Refine the Haskell language definition and code style for use in the \textquote{Konzepte der Programmierung} lecture.
+%
+%    \begin{macrocode}
+\lstdefinelanguage[Zimmermann]{haskell}[]{haskell}{
+    escapeinside={*'}{'*},
+    showstringspaces=false,
+    morecomment=[l]\%,
+    captionpos=b,
+    emphstyle={\bfseries},
+}
+\lstalias[]{zhaskell}[Zimmermann]{haskell}
+% Deprecated. Use `language=zhaskell` instead of `style=haskell`.
+\lstdefinestyle{haskell}{language=zhaskell}
+%    \end{macrocode}
+%
+%\paragraph{Assembler Language Definition}
+%Introduce a new language definition for Prof.~Molitor's Assembler dialect used in \textquote{Einführung in Rechnerarchitektur}.
+%
+%    \begin{macrocode}
+\lstdefinelanguage[Molitor]{Assembler}[x86masm]{Assembler}{
+    morekeywords={
+        ldd,sto,shl,shr,rol,ror,sub,add,shli,shri,roli,rori,
+        subi,addi,or,and,xor,xnor,jmp,beq,bneq,bgt,bo,ldpc,stpc
+    },
+    comment=[l]{\#},
+}
+\lstalias[]{massembler}[Molitor]{Assembler}
+% Deprecated. Use `language=massembler` instead of `style=massembler`.
+\lstdefinestyle{massembler}{language=massembler}
+%    \end{macrocode}
+%
+%\subsection{Graphics, Drawing, Plots}
+%
+%We add packages for including images and graphics, for drawing vector graphics, and for plotting data or functions.
+%
+%    \begin{macrocode}
+\RequirePackage{graphicx}
+\RequirePackage{float}
+\RequirePackage{subcaption}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\RequirePackage{rotating}
+\usetikzlibrary{positioning}
+\usetikzlibrary{automata}
+\usetikzlibrary{trees}
+\tikzset{
+    >=latex,
+    font=\sffamily,
+}
+\pgfplotsset{compat=1.16}
+%    \end{macrocode}
+%
+%\subsection{Document Hooks}
+%
+%The following \LaTeX{} code should be inserted just before \lstinline|\begin{document}|.
+%
+%    \begin{macrocode}
+\AtEndPreamble{
+%    \end{macrocode}
+%
+%Update exercise and task number as specified in the preamble. (Set first section number to task number.)
+%
+%    \begin{macrocode}
+    \setcounter{section}{\the\@task} \addtocounter{section}{-1}
+    \newcommand{\@exercisestring}{\IfGerman{\the\@exercise.~Übungsserie}{Exercise~\the\@exercise}}
+%    \end{macrocode}
+%
+%Set up page head/foot with metadata.
+%
+%    \begin{macrocode}
+    \ihead{\the\@studentname}
+    \chead{\textbf{\@exercisestring}}
+    \ohead{
+        \the\@studentnumber%
+        \ifthenelse{\equal{\the\@studentnumber}{} \OR \equal{\the\@studentsymbol}{}}{}{\ /\,}%
+        \the\@studentsymbol%
+    }
+%    \end{macrocode}
+%
+%Set up PDF metadata.
+%
+%    \begin{macrocode}
+    \hypersetup{
+        pdfauthor={\the\@studentname},
+        pdftitle={\@exercisestring - \the\@lecture}
+    }
+%    \end{macrocode}
+%
+%
+%    \begin{macrocode}
+}
+%    \end{macrocode}
+%
+%\iffalse
+%</class>
+%\fi
+%
+%\StopEventually{
+%    \PrintChanges
+%}
+%
+%\Finale
+\endinput
