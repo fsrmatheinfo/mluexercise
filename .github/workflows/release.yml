@@ -30,7 +30,7 @@ jobs:
         uses: xu-cheng/texlive-action/small@v1
         with:
           run: |
-            apk add make
+            apk add make zip
             make ctan
       - name: "📤 Upload LaTeX class"
         uses: actions/upload-artifact@v2
