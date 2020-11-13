@@ -10,7 +10,8 @@ dependencies-install: texlive-update
 
 install: dependencies-install
 	latexmk -outdir=$(CLASS) $(CLASS).dtx -pdf
-	cp $(CLASS)/$(CLASS).cls .
+	cp $(CLASS)/$(CLASS).cls $(CLASS).cls
+	cp $(CLASS).dtx $(CLASS)/$(CLASS).dtx
 
 dependencies-samples: texlive-update
 	tlmgr install koma-script latex ly1 etoolbox xpatch ifoddpage hyperref xcolor babel oberdiek tools geometry libertine eulervm sourcecodepro microtype csquotes relsize totpages amsmath amscls amsfonts tools cancel pgf algorithm2e listings listingsutf8 booktabs graphics float caption pgfplots
@@ -20,4 +21,4 @@ samples: dependencies-samples
 	latexmk exercise-german.tex -pdf
 
 ctan: install
-	zip $(CLASS) $(CLASS)/README.md $(CLASS)/LICENSE.txt $(CLASS)/$(CLASS).cls $(CLASS)/mluexercise.ins $(CLASS)/$(CLASS).pdf
+	zip $(CLASS) $(CLASS)/README.md $(CLASS)/LICENSE.txt $(CLASS)/$(CLASS).dtx $(CLASS)/mluexercise.ins $(CLASS)/$(CLASS).pdf
