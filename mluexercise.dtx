@@ -71,7 +71,6 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 \documentclass[a4paper,english]{ltxdoc}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{geometry}
 \usepackage{babel}
 \usepackage{libertine}
 \usepackage{eulervm}
@@ -81,15 +80,17 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 \newcommand{\ttsmallfont}{\ttfamily\smaller}
 \renewcommand{\UrlFont}{\ttsmallfont}
 \renewcommand{\texttt}[1]{{\ttsmallfont #1}}
+\renewcommand{\MacroFont}{\ttfamily\footnotesize}
 \usepackage{listings}
 \usepackage{csquotes}
-\usepackage[sf]{titlesec}
+\usepackage{booktabs}
+\usepackage[sf,bf]{titlesec}
 \lstset{
     language=TeX,
-    basicstyle=\ttfamily,
+    basicstyle=\ttfamily\footnotesize,
     breakatwhitespace=false,
     breaklines=true,
-    prebreak={\mbox{$\hookleftarrow$}},
+    prebreak={\mbox{\(\hookleftarrow\)}},
     numbers=left,
     numberstyle=\scriptsize,
     numbersep=1pt,
@@ -111,7 +112,7 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 %\renewcommand{\filedate}{2020/11/12}
 %\renewcommand{\fileversion}{v2.0}
 %
-%\title{\sffamily The \texttt{\jobname} class\footnote{This document describes version \fileversion{}, last revised \filedate{}.}}
+%\title{\sffamily\bfseries The \texttt{\jobname} class\footnote{This document describes version \fileversion{}, last revised \filedate{}.}}
 %\author{\sffamily %
 %    Jan Heinrich Reimer \\
 %    Fachschaftsrat Mathematik/Informatik%
@@ -135,45 +136,119 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 %
 %\section{Usage}
 %
-%TODO
+%\DescribeMacro{\documentclass}
+%Load the \texttt{mluexercise} class at the start of your preamble.
+%
+\begin{lstlisting}[gobble=4]
+    \documentclass{mluexercise}
+\end{lstlisting}
+%
+%\paragraph{Languages}
+%
+%As in many classes, you can define your main document language.
+%This will help \LaTeX{} in hyphenating words and structural texts (e.g.,~sections) are being translated automatically.
+%
+%\DescribeMacro{english}
+%The \texttt{english} option selects English language for texts and hyphenation.
+%
+%\DescribeMacro{ngerman}
+%The \texttt{ngerman} option selects German language (with new spelling) for texts and hyphenation.
+%
+%While you do not have to specify a language, it is a meaningful information for writers (including yourself) to explicitly state the desired language that should be used consistently throughout the whole document. If no language is specified, English language is used.
+%
+%\paragraph{Styles}
+%
+%\DescribeMacro{dataminingstyle}
+%The \texttt{dataminingstyle} option may be used for the \textquote{Data Mining} lecture and overwrites some mathematical symbols to match the lecture's definition's.
 %
 %\subsection{Exercise Metadata}
 %
+%Define the exercise's metadata and your identity. The below macros should be used only in the preamble, that is before \lstinline|\begin{document}|.
+%
+%\DescribeMacro{\lecture}
+%The \cs{lecture}\marg{name} macro sets the name of the lecture you are writing exercises for.
+%
+%\DescribeMacro{\semester}
+%The semester is automatically set to the current semester. You can overwrite the default value with the \cs{semester}\marg{semester} macro if you are compiling exercises for another semester.
+%
+%\DescribeMacro{\exercise}
+%The \cs{exercise}\marg{number} macro sets the number of the exercise you are working on.
+%
+%\DescribeMacro{\task}
+%The \cs{task}\marg{number} macro sets the number of the first task.
+%This is useful if you submit single PDF files for each task within the exercise.
+%If you omit this option, numbering starts at~1.
+%
+%\DescribeMacro{\group}
+%Sometimes tutors allow to submit exercises in groups.
+%You can use the optional \cs{group}\marg{number} macro to set the group number.
+%If no group number is given, the group number is not displayed.
+%
+%\DescribeMacro{\title}
+%The \cs{title}\marg{lecture name} macro is an alias for \cs{lecture}\marg{lecture name}.
+%
+%\DescribeMacro{\date}
+%The date is automatically set to the current date.
+%You can overwrite the default value with the \cs{date}\marg{date} macro.
+%
 %\subsection{Student Metadata}
 %
+%The following commands should be used to include identification in your exercise in order to assign your work.
+%
+%\DescribeMacro{\studentname}
+%You must define your full name with the \cs{studentname}\marg{full name} macro.
+%If you are working in a group, you can enter more names separated with commas and/or line breaks.
+%
+%\DescribeMacro{\studentnumber}
+%The \cs{studentnumber}\marg{matriculation number} macro specifies your student matriculation number (e.g.,~234\,567\,890). This is the same number as on your student ID card.
+%
+%\DescribeMacro{\studentsymbol}
+%The \cs{studentsymbol}\marg{shorthand symbol} macro specifies your shorthand symbol used for university IT services (e.g.,~abcde). This is the same username used for Stud.IP, university mail etc.
+%
+%Both \cs{studentnumber} an \cs{studentsymbol} are optional.
+%Though, most tutors require specifying either student number or symbol.
+%
 %\paragraph{Multiple Students}
+%
+%While you can use commas and line breaks in the above macros, we would suggest one of the following two options to submit work in groups with multiple students:
+%\begin{itemize}
+%    \item Either use the services offered by the university to check-in your group members online~(e.g.,~in the Institute for Computer Science's \textquote{Übungsportal}).
+%        In this case you don't need to specify multiple names in the preamble, but just your own name.
+%    \item Or, if you cannot specify group members elsewhere, we recommend to add a footnote on the first page. That way you can list all other students but do not waste too much paper.
+%\end{itemize}
 %
 %\subsection{Included Packages}
 %
 %The \texttt{\jobname} class loads a number of useful \LaTeX{} packages listed in Table~\ref{tab:packages}.
 %Those are needed to typeset exercises during the Computer Science bachelor's degree programme at Martin Luther University Halle-Wittenberg.
-%For further documentation please refer to each respective package.
+%We recommend reading the introductions of each package's documentation on CTAN\footnote{\url{https://ctan.org/}}.
 %\begin{table}
 %    \caption{Packages included in the class.}
 %    \label{tab:packages}
 %    \begin{tabular}{lll}
-%        \hline
+%        \toprule
 %        \textbf{Package} & \textbf{Purpose} & \textbf{Link} \\
-%        \hline
-%        \texttt{babel} & hyphenation, localization & \url{https://ctan.org/pkg/babel} \\
-%        \texttt{amsmath} & mathematics & \url{https://ctan.org/pkg/amsmath} \\
-%        \texttt{amsthm} & & \url{https://ctan.org/pkg/amsthm} \\
-%        \texttt{amssymb} & & \url{https://ctan.org/pkg/amssymb} \\
-%        \texttt{amstext} & & \url{https://ctan.org/pkg/amstext} \\
-%        \texttt{array} & & \url{https://ctan.org/pkg/array} \\
-%        \texttt{cancel} & & \url{https://ctan.org/pkg/cancel} \\
-%        \texttt{inputenc} & UTF8 encoding & \url{https://ctan.org/pkg/inputenc} \\
-%        \texttt{fontenc} & T1 encoding & \url{https://ctan.org/pkg/fontenc} \\
-%        \texttt{graphicx} & images, graphics & \url{https://ctan.org/pkg/graphicx} \\
-%        \texttt{xcolor} & color definitions & \url{https://ctan.org/pkg/xcolor} \\
-%        \texttt{tikz} & drawing vector graphics & \url{https://ctan.org/pkg/tikz} \\
-%        \texttt{pgfplots} & plotting & \url{https://ctan.org/pkg/pgfplots} \\
-%        \texttt{algorithm2e} & pseudocode, algorithms & \url{https://ctan.org/pkg/algorithm2e} \\
-%        \texttt{listings} & code listings & \url{https://ctan.org/pkg/listings} \\
-%        \texttt{listingsutf8} & & \url{https://ctan.org/pkg/listingsutf8} \\
-%        \texttt{subcaption} & sub-figures & \url{https://ctan.org/pkg/subcaption} \\
-%        \texttt{csquotes} & quotation & \url{https://ctan.org/pkg/csquotes} \\
-%        \hline
+%        \midrule
+%        \texttt{babel} & hyphenation, localization & {\smaller\url{https://ctan.org/pkg/babel}} \\
+%        \texttt{amsmath} & mathematics & {\smaller\url{https://ctan.org/pkg/amsmath}} \\
+%        \texttt{amsthm} & & {\smaller\url{https://ctan.org/pkg/amsthm}} \\
+%        \texttt{amssymb} & & {\smaller\url{https://ctan.org/pkg/amssymb}} \\
+%        \texttt{amstext} & & {\smaller\url{https://ctan.org/pkg/amstext}} \\
+%        \texttt{array} & & {\smaller\url{https://ctan.org/pkg/array}} \\
+%        \texttt{cancel} & & {\smaller\url{https://ctan.org/pkg/cancel}} \\
+%        \texttt{inputenc} & UTF8 encoding & {\smaller\url{https://ctan.org/pkg/inputenc}} \\
+%        \texttt{fontenc} & T1 encoding & {\smaller\url{https://ctan.org/pkg/fontenc}} \\
+%        \texttt{booktabs} & tables & {\smaller\url{https://ctan.org/pkg/booktabs}} \\
+%        \texttt{graphicx} & images, graphics & {\smaller\url{https://ctan.org/pkg/graphicx}} \\
+%        \texttt{xcolor} & color definitions & {\smaller\url{https://ctan.org/pkg/xcolor}} \\
+%        \texttt{tikz} & drawing vector graphics & {\smaller\url{https://ctan.org/pkg/tikz}} \\
+%        \texttt{pgfplots} & plotting & {\smaller\url{https://ctan.org/pkg/pgfplots}} \\
+%        \texttt{algorithm2e} & pseudocode, algorithms & {\smaller\url{https://ctan.org/pkg/algorithm2e}} \\
+%        \texttt{listings} & code listings & {\smaller\url{https://ctan.org/pkg/listings}} \\
+%        \texttt{listingsutf8} & & {\smaller\url{https://ctan.org/pkg/listingsutf8}} \\
+%        \texttt{subcaption} & sub-figures & {\smaller\url{https://ctan.org/pkg/subcaption}} \\
+%        \texttt{csquotes} & quotation & {\smaller\url{https://ctan.org/pkg/csquotes}} \\
+%        \bottomrule
 %    \end{tabular}
 %\end{table}
 %
@@ -181,15 +256,15 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 %
 %The \texttt{\jobname} class should:
 %
-%\begin{enumerate}
+%\begin{itemize}
 %    \item be usable for first semester students with rather little LaTeX experience,
-%    \item be consistent with Martin Luther University brand guidelines\footnote{\url{https://www.pr.uni-halle.de/download/logo/}}, especially with respect to font families and colors,
+%    \item be consistent with Martin Luther University brand guidelines\footnote{\url{https://www.pr.uni-halle.de/download/logo/}}, especially with respect to font families and colors, and
 %    \item include packages frequently needed by students.
-%\end{enumerate}
+%\end{itemize}
 %
 %\section{Implementation}
 %
-%\subsection{Basic setup}
+%\subsection{Setup}
 %
 %We specify the \LaTeX{} version, define and parse options and then load the base class \texttt{scrartcl}\footnote{\url{https://ctan.org/pkg/scrartcl}} with all remaining options.
 %
@@ -198,7 +273,7 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 \ProvidesPackage{mluexercise}[2020/11/12 v2.0]
 %    \end{macrocode}
 %
-%\paragraph{Class Options}
+%\paragraph{Options}
 %
 %    \begin{macrocode}
 \newif\ifdataminingstyle\dataminingstylefalse
@@ -323,9 +398,10 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 \newcommand{\strong}[1]{\textbf{#1}}
 \newcommand{\italic}[1]{\textit{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\Underline}[1]{\underline{\underline{#1}}} % Double underline.
+% Double underline.
+\newcommand{\Underline}[1]{\underline{\underline{#1}}}
 % Abbreviated plural ("Lineare Algebra" lecture).
-\newcommand{\plural}[1]{\textsuperscript{\underline{$#1$}}}
+\newcommand{\plural}[1]{\textsuperscript{\underline{#1}}}
 \newcommand{\pl}[1]{\plural{#1}}
 \RequirePackage[autostyle=true,german=quotes]{csquotes}
 %    \end{macrocode}
@@ -371,7 +447,8 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 \setkomafont{date}{\sffamily\large\centering}
 \newlength{\approxtitlewidth}
 \renewcommand{\maketitle}{%
-    \settowidth{\approxtitlewidth}{\usefontofkomafont{title}\the\@lecture}%
+    \settowidth{\approxtitlewidth}{%
+        \usefontofkomafont{title}\the\@lecture}%
     \ifthenelse{\lengthtest{\approxtitlewidth>\textwidth}}{%
         \addtokomafont{title}{\LARGE}}{}%
     \begin{center}%
@@ -447,7 +524,7 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 \newcommand{\mlor}{\(\lor\)} % \lor in text.
 %    \end{macrocode}
 %
-%Many maths symbols can have alternatives for stylistic choices. We enable the variants most liked by our professors.
+%Many maths symbols can have alternatives for stylistic choices. We enable the variants most liked by our tutors.
 %
 %    \begin{macrocode}
 \let\tmp\mod \let\mod\bmod \let\bmod\tmp
@@ -529,10 +606,21 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
     @{\stepcounter{calculusRowCount}
     (\arabic{calculusRowCount})\hspace{1em}} R
     @{\hspace{0.4em}
-    $\vdash_{\ifthenelse{
-        \equal{\pgfkeysvalueof{/mlu/calculus/show index}}{true}}{
-            \ifthenelse{\equal{\pgfkeysvalueof{/mlu/calculus/symbol}}{}}{}{
-                \calculusSymbol}}{\hspace{-0.1em}}}$\hspace{0.6em}}
+    \(
+        \vdash_{%
+            \ifthenelse{%
+                \equal{\pgfkeysvalueof{/mlu/calculus/show index}}{true}
+            }{
+                \ifthenelse{%
+                    \equal{\pgfkeysvalueof{/mlu/calculus/symbol}}{}%
+                }{}{%
+                    \calculusSymbol%
+                }%
+            }{%
+                \hspace{-0.1em}%
+            }%
+        }%
+    \)\hspace{0.6em}}
         L l
     }
 }{
@@ -555,8 +643,8 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 %    \begin{macrocode}
 \RequirePackage[vlined,linesnumbered]{algorithm2e}
 \DontPrintSemicolon % Hide semicolons.
-\SetKwProg{Function}{function}{\ is}{end function} % Function definition.
-\SetKwComment{Comment}{\quad$\triangleright$\ }{} % Comment style.
+\SetKwProg{Function}{function}{\ is}{end function}
+\SetKwComment{Comment}{\quad\(\triangleright\)~}{} % Comment style.
 \SetCommentSty{itshape} % Comment font.
 \SetKw{Continue}{continue}
 \SetKwBlock{Repeat}{repeat}{}
@@ -647,6 +735,7 @@ The `mluexercise` LaTeX class is distributed under the [MIT license](https://cta
 %We add packages for including images and graphics, for drawing vector graphics, and for plotting data or functions.
 %
 %    \begin{macrocode}
+\RequirePackage{booktabs}
 \RequirePackage{graphicx}
 \RequirePackage{float}
 \RequirePackage{subcaption}
