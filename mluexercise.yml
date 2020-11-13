@@ -1,25 +1,25 @@
+# See supported fields at https://www.ctan.org/submit/fields.
+# We declare some additional fields which are prefixed with `_`.
+
 pkg: mluexercise
 summary: Exercises/homework at the Martin Luther University Halle-Wittenberg.
 description: |
   LaTeX class for typesetting exercises and homework at the Martin Luther University Halle-Wittenberg.
   Focussing on simplicity, to encourage use by first semester students, and on the university's brand guidelines.
   The class is maintained by the Computer Science / Mathematics student's council at Martin Luther University Halle-Wittenberg.
-_announcement: |
-  New LaTeX class for typesetting exercises and homework at the Martin Luther University Halle-Wittenberg, maintained by its student's council.
-  We focussing on encouraging first semester students to use LaTeX for typesetting, thus we keep this package as simple as possible.
-  Yet we implement the university's brand guidelines and include/load commonly used packages needed in the first semesters.
+# announcement: "" # Release announcement.
 version: 2.0
-author: Jan Heinrich Reimer
-uploader: Jan Heinrich Reimer
+author: Fachschaftsrat Mathematik/Informatik der Studierendenschaft der Martin-Luther-Universität K.d.ö.R.
+uploader: Jan Heinrich Reimer # May also be the GitHub actor.
 email: fachschaft@mathinf.uni-halle.de
 home: https://github.com/fsrmatheinfo/mluexercise
-bugs: https://github.com/fsrmatheinfo/mluexercise/issues
-mailinglist: https://github.com/fsrmatheinfo/mluexercise/issues
-_support: https://github.com/fsrmatheinfo/mluexercise/issues
-_annoouncements: https://github.com/fsrmatheinfo/mluexercise/releases
+bugtracker: https://github.com/fsrmatheinfo/mluexercise/issues
+support: https://github.com/fsrmatheinfo/mluexercise/issues
 repository: https://github.com/fsrmatheinfo/mluexercise
-_developers: https://github.com/fsrmatheinfo/mluexercise
+development: https://github.com/fsrmatheinfo
 ctanPath: /macros/latex/contrib/mluexercise
-license: mit
-topic: class,exercise
+license: MIT License
+file: ./mluexercise.zip
+topic: class,exercise # See https://ctan.org/topic for a collection of topics.
 update: true
+# note: "" # Administrational note to the CTAN upload managers.
